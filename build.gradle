@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'application'
+
+group = 'org.sitmun'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.sitmun:sitmun-pof-plugin-core:1.0.0-SNAPSHOT'
+    runtime 'org.sitmun:sitmun-pof-plugin-demo:1.0.0-SNAPSHOT'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+task install(dependsOn: 'publishToMavenLocal')
