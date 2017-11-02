@@ -1,3 +1,3 @@
-language: java
+install: true # Skip insallation (all is done in build.sh for now)
 
 script: ./build-scripts/build.sh
