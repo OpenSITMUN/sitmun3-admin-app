@@ -1,4 +1,5 @@
 # Prueba de factibilidad - aplicación
+[![Build Status](https://travis-ci.org/OpenSITMUN/sitmun-pof-app-pof.svg?branch=master)](https://travis-ci.org/OpenSITMUN/sitmun-pof-app-pof)
 
 Modularización de la [prueba de factibilidad](https://github.com/OpenSITMUN/prueba-de-factibilidad)
 
