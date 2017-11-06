@@ -23,6 +23,8 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            artifactId 'sitmun-pof-app-pof'
+            
             from components.java
         }
     }

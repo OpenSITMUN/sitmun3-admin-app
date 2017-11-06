@@ -3,8 +3,8 @@
 
 env:
   global:
-  - PLUGIN1DIR=/tmp/sitmun-pof-plugin-core
-  - PLUGIN2DIR=/tmp/sitmun-pof-plugin-demo
+  - PLUGIN1DIR=$(mktemp -d)
+  - PLUGIN2DIR=$(mktemp -d)
 
 
 install: ./build-scripts/install.sh
