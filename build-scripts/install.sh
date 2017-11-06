@@ -1,5 +1,5 @@
 #!/bin/bash
-MAIN_BUILD_DIR=${PWD}
+export MAIN_BUILD_DIR=${PWD}
 
 # ArtifactID in gradle by default uses the name of the directory
 # So using temp dirs with random names does not work (it can be
@@ -7,8 +7,8 @@ MAIN_BUILD_DIR=${PWD}
 # repositories)
 #PLUGIN1DIR=$(mktemp -d)
 #PLUGIN2DIR=$(mktemp -d)
-PLUGIN1DIR=(/tmp/sitmun-pof-plugin-core/)
-PLUGIN2DIR=(/tmp/sitmun-pof-plugin-demo/)
+export PLUGIN1DIR=(/tmp/sitmun-pof-plugin-core/)
+export PLUGIN2DIR=(/tmp/sitmun-pof-plugin-demo/)
 
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-core.git $PLUGIN1DIR
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-demo.git $PLUGIN2DIR
