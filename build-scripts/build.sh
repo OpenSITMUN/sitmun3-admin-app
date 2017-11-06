@@ -16,8 +16,6 @@
 # changed in build.gradle, but for now I'll stick to the names of the
 # repositories)
 export TRAVIS_BUILD_DIR=${PWD}
-#export PLUGIN1DIR=(/tmp/sitmun-pof-plugin-core)
-#export PLUGIN2DIR=(/tmp/sitmun-pof-plugin-demo)
 export PLUGIN1DIR=$(mktemp -d)
 export PLUGIN2DIR=$(mktemp -d)
 
