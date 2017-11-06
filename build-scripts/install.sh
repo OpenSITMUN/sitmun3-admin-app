@@ -7,13 +7,11 @@ export MAIN_BUILD_DIR=${PWD}
 # repositories)
 #PLUGIN1DIR=$(mktemp -d)
 #PLUGIN2DIR=$(mktemp -d)
-export PLUGIN1DIR=(/tmp/sitmun-pof-plugin-core/)
-export PLUGIN2DIR=(/tmp/sitmun-pof-plugin-demo/)
+export PLUGIN1DIR=(/tmp/sitmun-pof-plugin-core)
+export PLUGIN2DIR=(/tmp/sitmun-pof-plugin-demo)
 
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-core.git $PLUGIN1DIR
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-demo.git $PLUGIN2DIR
 
-cd $PLUGIN1DIR
-./gradlew clean install
-cd $PLUGIN2DIR
-./gradlew clean install
+$PLUGIN1DIR/gradlew clean install
+$PLUGIN2DIR/gradlew clean install

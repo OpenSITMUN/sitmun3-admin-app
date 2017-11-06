@@ -1,3 +1,5 @@
+language: java
+
 install: ./build-scripts/install.sh
 
 script: ./build-scripts/script.sh
