@@ -1,4 +1,4 @@
-language: java
+# language: java
 
 install: ./build-scripts/install.sh
 
