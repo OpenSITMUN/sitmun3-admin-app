@@ -7,14 +7,10 @@
 # other shell scripts in the same build, so for local builds
 # they need to be declared also here. 
 # THIS IMPLIES THAT THIS LOCAL BUILD AND THE TRAVIS-CI BUILD
-# MAY DIFFER. TO-DO: IF THIS BUILD STRUCTURE IS KEPT, A
+# MIGHT DIFFER. TO-DO: IF THIS BUILD STRUCTURE IS KEPT, A
 # SCRIPT THAT BUILDS BOTH THIS SCRIPT AND .TRAVIS.YML FROM
-# A SET OF COMMON VARIABLES WOULD BE REQUIRED.
+# A SET OF COMMON VARIABLES COULD BE USEFUL.
 
-# ArtifactID in gradle by default uses the name of the directory
-# So using temp dirs with random names does not work (it can be
-# changed in build.gradle, but for now I'll stick to the names of the
-# repositories)
 export TRAVIS_BUILD_DIR=${PWD}
 export PLUGIN1DIR=$(mktemp -d)
 export PLUGIN2DIR=$(mktemp -d)
