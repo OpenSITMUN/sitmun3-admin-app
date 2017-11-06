@@ -1,4 +1,11 @@
+# The build fails (for now) if I declare a language
 # language: java
+
+env:
+  global:
+  - PLUGIN1DIR=/tmp/sitmun-pof-plugin-core
+  - PLUGIN2DIR=/tmp/sitmun-pof-plugin-demo
+
 
 install: ./build-scripts/install.sh
 
