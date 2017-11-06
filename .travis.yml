@@ -1,6 +1,6 @@
-install: true # Skip installation (all is done in build.sh for now)
+install: ./build-scripts/install.sh
 
-script: ./build-scripts/build.sh
+script: ./build-scripts/script.sh
 
 # Caching should speed up builds
 before_cache:
@@ -12,3 +12,5 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.m2
+
+after_script: ./build-scripts/after_script.sh
