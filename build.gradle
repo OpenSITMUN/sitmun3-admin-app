@@ -23,9 +23,9 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            group = 'org.sitmun'
+            group 'org.sitmun'
             artifactId 'sitmun-pof-app-pof'
-            version = '1.0.0-SNAPSHOT'
+            version '1.0.0-SNAPSHOT'
 
             from components.java
         }
