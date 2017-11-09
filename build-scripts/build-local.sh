@@ -5,16 +5,13 @@
 # in the .travis.yml. I have not found a way to make travis-ci
 # share environment variables declared in one shell script with
 # other shell scripts in the same build, so for local builds
-# they need to be declared also here. 
+# they need to be declared also here.
 # THIS IMPLIES THAT THIS LOCAL BUILD AND THE TRAVIS-CI BUILD
 # MIGHT DIFFER. TO-DO: IF THIS BUILD STRUCTURE IS KEPT, A
 # SCRIPT THAT BUILDS BOTH THIS SCRIPT AND .TRAVIS.YML FROM
 # A SET OF COMMON VARIABLES COULD BE USEFUL.
 
 export TRAVIS_BUILD_DIR=${PWD}
-export PLUGIN_DIR=$(mktemp -d)
-
-
 
 ################################################
 
@@ -27,6 +24,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Using source makes all of them run in the same shell process
 # so they can share functions and variables
 
-source $DIR/install.sh
+source $DIR/install-dependencies.sh
 source $DIR/script.sh
-source $DIR/after_script.sh
+source $DIR/after_script-local.sh
+
