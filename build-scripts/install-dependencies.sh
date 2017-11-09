@@ -8,9 +8,7 @@ echo "Install dependencies script ..."
 echo
 
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-core.git $PLUGIN_DIR/sitmun-pof-plugin-core
-cd $PLUGIN_DIR/sitmun-pof-plugin-core
-./gradlew clean install
+./gradlew -p $PLUGIN_DIR/sitmun-pof-plugin-core clean install
 
 git clone https://github.com/OpenSITMUN/sitmun-pof-plugin-core.git $PLUGIN_DIR/sitmun-pof-plugin-demo
-cd $PLUGIN_DIR/sitmun-pof-plugin-demo
-./gradlew clean install
+./gradlew -p $PLUGIN_DIR/sitmun-pof-plugin-demo clean install
