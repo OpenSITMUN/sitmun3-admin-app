@@ -3,19 +3,13 @@
 
 Modularización de la [prueba de factibilidad](https://github.com/OpenSITMUN/prueba-de-factibilidad)
 
-Tras hacer copia local de los repos
-* [sitmun-pof-app-pof](https://github.com/OpenSITMUN/sitmun-pof-app-pof) 
-* [sitmun-pof-plugin-core](https://github.com/OpenSITMUN/sitmun-pof-plugin-core)
-* [sitmun-pof-plugin-demo](https://github.com/OpenSITMUN/sitmun-pof-plugin-demo)
+# Build and run (local)
+Clone the repository.
+Build: `$ ./build-scripts/build-local.sh`.
+Run: `$ ./gradlew bootRun` and go to <http://localhost:8080>.
 
-Pasos
-```bash
-$ cd sitmun-pof-plugin-core
-$ gradle clean install
-$ cd sitmun-pof-plugin-demo
-$ gradle clean install
-$ cd sitmun-pof-app-pof
-$ gradle clean bootRun
-```
+# Dependencies
+This project depends on these plugins (already considered in the build script):
 
-Y navegar a http://localhost:8080
+- [sitmun-pof-plugin-core](https://github.com/OpenSITMUN/sitmun-pof-plugin-core)
+- [sitmun-pof-plugin-demo](https://github.com/OpenSITMUN/sitmun-pof-plugin-demo)
