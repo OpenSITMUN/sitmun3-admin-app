@@ -1,8 +1,6 @@
 # The build fails (for now) if I declare a language
 # language: java
 
-lang: java
-
 before_install: ./build-scripts/install-dependencies.sh
 
 script:
