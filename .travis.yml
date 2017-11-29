@@ -1,9 +1,12 @@
-# The build fails (for now) if I declare a language
-# language: java
+addons:
+  sonarcloud:
+    organization: opensitmun
 
 before_install: ./build-scripts/install-dependencies.sh
 
 script: ./build-scripts/script.sh
+
+after_success: ./build-scripts/after_success.sh
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

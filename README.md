@@ -1,5 +1,6 @@
 # Prueba de factibilidad - aplicación
 [![Build Status](https://travis-ci.org/OpenSITMUN/sitmun-pof-app-pof.svg?branch=master)](https://travis-ci.org/OpenSITMUN/sitmun-pof-app-pof)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun-pof-app-pof)](https://sonarcloud.io/dashboard?id=sitmun-pof-app-pof)
 
 Modularización de la [prueba de factibilidad](https://github.com/OpenSITMUN/prueba-de-factibilidad)
 
