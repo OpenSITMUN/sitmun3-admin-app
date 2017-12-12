@@ -15,9 +15,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.sitmun:sitmun-pof-plugin-core:1.0.0-SNAPSHOT'
-    compile 'org.sitmun:sitmun-pof-plugin-demo:1.0.0-SNAPSHOT'
-
+    compile 'org.sitmun:sitmun3-plugin-core:1.0.0-SNAPSHOT'
+    compile 'org.springframework.data:spring-data-rest-hal-browser'    
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -25,7 +24,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId 'org.sitmun'
-            artifactId 'sitmun-pof-app-pof'
+            artifactId 'sitmun3-admin-app'
             version '1.0.0-SNAPSHOT'
 
             from components.java
