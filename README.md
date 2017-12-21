@@ -1,4 +1,4 @@
-# Prueba de factibilidad - aplicación
+# Aplicaci�n del Administrador - aplicación
 [![Build Status](https://travis-ci.org/OpenSITMUN/sitmun3-admin-app.svg?branch=master)](https://travis-ci.org/OpenSITMUN/sitmun3-admin-app)
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun3-admin-app)](https://sonarcloud.io/dashboard?id=sitmun3-admin-app)
 
