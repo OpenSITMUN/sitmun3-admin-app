@@ -19,7 +19,7 @@ public class CorePluginIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test
+    /*@Test
     public void configjsIsPresent() throws Exception {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/app/config.js", String.class))
                 .contains("requirejs.config");
@@ -29,5 +29,5 @@ public class CorePluginIntegrationTest {
     public void jsIsPresent() throws Exception {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/app/config.js", String.class))
                 .contains("sitmun3-plugin-core");
-    }
+    }*/
 }
