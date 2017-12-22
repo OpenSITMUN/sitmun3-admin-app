@@ -28,6 +28,6 @@ public class CorePluginIntegrationTest {
     @Test
     public void jsIsPresent() throws Exception {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/app/config.js", String.class))
-                .contains("sitmun-plugin-core");
+                .contains("sitmun3-plugin-core");
     }
 }
