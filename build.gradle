@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.sitmun:sitmun3-plugin-core:1.0.0-SNAPSHOT'
+    compile 'org.sitmun:sitmun-plugin-core:1.0.0-SNAPSHOT'
     compile 'org.springframework.data:spring-data-rest-hal-browser'    
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -24,7 +24,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId 'org.sitmun'
-            artifactId 'sitmun3-admin-app'
+            artifactId 'sitmun-admin-app'
             version '1.0.0-SNAPSHOT'
 
             from components.java

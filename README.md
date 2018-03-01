@@ -1,8 +1,6 @@
-# Aplicación del Administrador - aplicaciÃ³n
-[![Build Status](https://travis-ci.org/OpenSITMUN/sitmun3-admin-app.svg?branch=master)](https://travis-ci.org/OpenSITMUN/sitmun3-admin-app)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun3-admin-app)](https://sonarcloud.io/dashboard?id=sitmun3-admin-app)
-
-ModularizaciÃ³n de la [prueba de factibilidad](https://github.com/OpenSITMUN/sitmun3-admin-app)
+# Aplicación del Administrador
+[![Build Status](https://travis-ci.org/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.org/sitmun/sitmun-admin-app)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun-admin-app)](https://sonarcloud.io/dashboard?id=sitmun-admin-app)
 
 # Build and run (local)
 Clone the repository.
@@ -16,5 +14,5 @@ If you the SonarCloud analysis has been properly run, you can see the report by 
 # Dependencies
 This project depends on these plugins (already considered in the build script):
 
-- [sitmun-pof-plugin-core](https://github.com/OpenSITMUN/sitmun3-plugin-core)
+- [sitmun-plugin-core](https://github.com/sitmun/sitmun-plugin-core)
 

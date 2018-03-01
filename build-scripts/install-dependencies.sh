@@ -7,8 +7,8 @@ echo
 echo "Install dependencies script ..."
 echo
 
-if git clone https://github.com/OpenSITMUN/sitmun3-plugin-core.git $PLUGIN_DIR/sitmun3-plugin-core; then
-    cd $PLUGIN_DIR/sitmun3-plugin-core
+if git clone https://github.com/sitmun/sitmun-plugin-core.git $PLUGIN_DIR/sitmun-plugin-core; then
+    cd $PLUGIN_DIR/sitmun-plugin-core
     ./gradlew clean install
 else
     echo
