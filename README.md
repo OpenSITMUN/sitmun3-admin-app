@@ -1,4 +1,4 @@
-# Aplicación del Administrador
+# Aplicaciï¿½n del Administrador
 [![Build Status](https://travis-ci.org/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.org/sitmun/sitmun-admin-app)
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun-admin-app)](https://sonarcloud.io/dashboard?id=sitmun-admin-app)
 
@@ -15,4 +15,3 @@ If you the SonarCloud analysis has been properly run, you can see the report by 
 This project depends on these plugins (already considered in the build script):
 
 - [sitmun-plugin-core](https://github.com/sitmun/sitmun-plugin-core)
-
