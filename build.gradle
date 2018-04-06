@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.sitmun:sitmun-plugin-core:1.0.0-SNAPSHOT'
+    compile 'org.sitmun:sitmun-plugin-core:0.1.0-SNAPSHOT'
     // compile 'org.springframework.data:spring-data-rest-hal-browser'
     compile 'com.zaxxer:HikariCP:2.6.0'
     //compile 'com.oracle:ojdbc7:12.1.0.2'   
@@ -30,7 +30,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId 'org.sitmun'
             artifactId 'sitmun-admin-app'
-            version '1.0.0-SNAPSHOT'
+            version '0.1.0-SNAPSHOT'
 
             from components.java
         }

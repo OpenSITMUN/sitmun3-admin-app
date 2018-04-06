@@ -1,4 +1,4 @@
-# Aplicaci�n del Administrador
+# Aplicación del Administrador
 [![Build Status](https://travis-ci.org/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.org/sitmun/sitmun-admin-app)
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun-admin-app)](https://sonarcloud.io/dashboard?id=sitmun-admin-app)
 

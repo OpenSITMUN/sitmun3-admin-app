@@ -1,6 +1,19 @@
-.gradle
-!gradle-wrapper.jar
+# Ignore Gradle files
+.gradle/
+build/
+
+# Ignore IntelliJ files
 .idea/
-out
-build
+out/
 *.iml
+*.iws
+*.ipr
+
+# Ignore Eclipse files
+.classpath
+.project
+.settings/
+bin/
+
+# Other dirs
+database/
