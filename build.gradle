@@ -25,6 +25,7 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
