@@ -7,6 +7,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 
 repositories {
@@ -42,8 +43,7 @@ sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
         property 'sonar.organization', 'sitmun'     
-        property 'sonar.sources', 'src/main'
-    }    
+    }
 }
 
 
