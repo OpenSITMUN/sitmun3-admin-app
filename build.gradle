@@ -9,6 +9,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'application'
 apply plugin: 'jacoco'
 
+group = 'org.sitmun'
+version = '0.1.0-SNAPSHOT'
 
 repositories {
     mavenLocal()

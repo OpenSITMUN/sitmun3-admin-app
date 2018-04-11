@@ -1,6 +1,6 @@
 # Aplicación del Administrador
 [![Build Status](https://travis-ci.org/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.org/sitmun/sitmun-admin-app)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=sitmun-admin-app)](https://sonarcloud.io/dashboard?id=sitmun-admin-app)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=org.sitmun%3Asitmun-admin-app)](https://sonarcloud.io/dashboard?id=org.sitmun%3Asitmun-admin-app)
 
 # Build and run (local)
 Clone the repository.
