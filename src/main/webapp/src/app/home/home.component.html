@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-content>
+
+
+ <mat-nav-list>
+        <h3 [translate]="'menu.territories'" >Territories</h3>
+            
+        <a mat-list-item [routerLink]="['/territory-list']">{{'menu.territoryManagement'| translate}}</a>
+             <a mat-list-item 
+            [routerLink]="['/territory-type-list']">{{'menu.territoryTypes'| translate}}
+    </a>
+    <h3 [translate]="'menu.users'">Users</h3>
+    <a mat-list-item  
+            [routerLink]="['/user-list']">{{'menu.userManagement'| translate}}
+    </a>
+    <a mat-list-item  
+            [routerLink]="['/role-list']">{{'menu.roles'| translate}}
+    </a>
+
+      </mat-nav-list>
+</mat-card-content>
+</mat-card>

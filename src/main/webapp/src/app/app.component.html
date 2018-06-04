@@ -1,0 +1,47 @@
+<div class="main-container" [class.example-is-mobile]="mobileQuery.matches" >
+<mat-toolbar color="primary">
+  
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-button [routerLink]="['']">
+  <img *ngIf="isHome" height="50px;" src="/assets/logoDiba.png">
+  </button> 
+    <h1 [translate]="'application.name'" fxHide.xs> Sitmun Admin App</h1> 
+   
+
+    <span class="fill-remaining-space"></span>
+    <span class="toolbar-spacer"></span>
+    <button mat-stroked-button (click)="changeLanguage('ca')"> CA </button> <button mat-stroked-button (click)="changeLanguage('es')"> ES </button> <button mat-stroked-button (click)="changeLanguage('en')"> EN </button>    
+</mat-toolbar>
+  <mat-sidenav-container class="main-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+
+      <mat-nav-list>
+        <h3 [translate]="'menu.territories'" >Territories</h3>
+            
+        <a mat-list-item [routerLink]="['/territory-list']">{{'menu.territoryManagement'| translate}}</a>
+             <a mat-list-item 
+            [routerLink]="['/territory-type-list']">{{'menu.territoryTypes'| translate}}
+    </a>
+    <h3 [translate]="'menu.users'">Users</h3>
+    <a mat-list-item  
+            [routerLink]="['/user-list']">{{'menu.userManagement'| translate}}
+    </a>
+    <a mat-list-item  
+            [routerLink]="['/role-list']">{{'menu.roles'| translate}}
+    </a>
+
+      </mat-nav-list>
+
+  
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
