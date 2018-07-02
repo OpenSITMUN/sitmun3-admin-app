@@ -12,7 +12,5 @@ public class ApplicationTests {
 
     @Test
     public void contextLoads() {
-        String[] args = new String[] {};
-        Application.main(args);
     }
 }

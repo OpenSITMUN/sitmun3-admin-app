@@ -17,3 +17,6 @@ spring:
             hibernate.naming:
                 physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    h2:
+        console:
+            enabled: true
