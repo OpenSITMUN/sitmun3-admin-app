@@ -17,3 +17,6 @@ bin/
 
 # Other dirs
 database/
+/node_modules/
+/dist/
+/npm-debug.log

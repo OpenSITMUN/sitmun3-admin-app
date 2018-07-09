@@ -75,6 +75,15 @@ publishing {
     }
 }
 
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$projectDir/dist", "$projectDir/src/main/resources"]
+		}
+	}
+}
+
+
 sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
