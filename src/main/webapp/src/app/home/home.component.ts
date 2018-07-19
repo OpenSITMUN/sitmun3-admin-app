@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Principal,LoginService} from 'sitmun-plugin-core';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public isHome = true; 	
-  constructor() { }
+  constructor(public loginService:LoginService,public principal:Principal) { }
 
   ngOnInit() {
+  }
+    
+    logout(){
+    this.loginService.logout();
+  }
+    
+  isLoggedIn(){
+    return this.principal.isAuthenticated();
   }
 
 }

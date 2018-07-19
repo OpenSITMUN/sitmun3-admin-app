@@ -5,7 +5,7 @@
   "projects": {
     "webapp": {
       "root": "Sitmun Admin Application",
-      "sourceRoot": "src",
+      "sourceRoot": "src/main/webapp/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -52,7 +52,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "webapp:build"
+            "browserTarget": "webapp:build", 
+            "proxyConfig": "src/main/webapp/src/proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -2,21 +2,42 @@
   <mat-card-content>
 
 
- <mat-nav-list>
-        <h3 [translate]="'menu.territories'" >Territories</h3>
-            
-        <a mat-list-item [routerLink]="['/territory-list']">{{'menu.territoryManagement'| translate}}</a>
-             <a mat-list-item 
-            [routerLink]="['/territory-type-list']">{{'menu.territoryTypes'| translate}}
-    </a>
-    <h3 [translate]="'menu.users'">Users</h3>
-    <a mat-list-item  
-            [routerLink]="['/user-list']">{{'menu.userManagement'| translate}}
-    </a>
-    <a mat-list-item  
-            [routerLink]="['/role-list']">{{'menu.roles'| translate}}
-    </a>
+ <mat-nav-list> 
+		<span *ngIf="isLoggedIn()">
+			<h3 [translate]="'menu.territories'">Territories</h3> 
+				<a *sitmunHasAnyAuthority="['ADMIN SITMUN','ADMIN ORGANIZACION']"
+				mat-list-item [routerLink]="['/territory-list']">{{'menu.territoryManagement'|
+				translate}}</a> 
+				<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+		[routerLink]="['/territory-type-list']">{{'menu.territoryTypes'|
+			translate}} </a>
+			<h3 [translate]="'menu.users'">
+			Users 
+			</h3> 
+				<a *sitmunHasAnyAuthority="['ADMIN SITMUN','ADMIN ORGANIZACION']" mat-list-item=""
+				
+				[routerLink]="['/user-list']">{{'menu.userManagement'|
+				translate}} </a>
+			
+				<a *sitmunHasAnyAuthority="'ADMIN SITMUN'" mat-list-item
+				[routerLink]="['/role-list']">{{'menu.roles'| translate}} </a>
 
-      </mat-nav-list>
+
+</span> 
+		
+		<span *ngIf="isLoggedIn()">
+		<h3 [translate]="'menu.account'">{{'menu.account'| translate}}</h3> 
+			<a href=""
+		[routerLink]="['/account']" mat-list-item>{{'account.data'| translate}}</a> <a
+		href="" [routerLink]="['/change-password']" mat-list-item
+		>{{'account.change-password'| translate}}</a>
+			<a href=""
+		(click)="logout()" mat-list-item>{{'account.closeSession'| translate}}</a> 
+		</span> 
+		<span *ngIf="!isLoggedIn()">
+			<h3><a  href="" [routerLink]="['/login']" mat-list-item>
+			{{ 'global.login'|translate}}</a></h3>
+		</span> 
+	</mat-nav-list>
 </mat-card-content>
 </mat-card>
