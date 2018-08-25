@@ -1,17 +1,35 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven { url "http://repo.spring.io/plugins-release" }
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}"
+  }
+}
+
+
 plugins {
-    id 'org.springframework.boot' version '1.5.8.RELEASE'
-    id 'org.sonarqube' version '2.6'
-    id 'org.ajoberstar.grgit' version '2.2.0'
+  id "org.sonarqube" version "2.6.2"
+  id "com.moowork.node" version "1.2.0"
+  id 'org.ajoberstar.grgit' version '2.2.0'
 }
 
 apply plugin: 'java'
-apply plugin: 'idea'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 apply plugin: 'maven-publish'
-apply plugin: 'application'
 apply plugin: 'jacoco'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+apply plugin: 'idea'
 
 group = 'org.sitmun'
-version = '0.1.0-SNAPSHOT'
+version = "${sitmun_version}"
 
 repositories {
     mavenLocal()
@@ -26,28 +44,29 @@ ext {
         gitrepo : 'https://github.com/sitmun/sitmun-plugin-core.git',
         groupId : 'org.sitmun',
         artifactId : 'sitmun-plugin-core',
-        version : '0.1.0-SNAPSHOT'
+        version : 'develop'
     ]
 }
 
 dependencies {    
-    sitmunlibs.each { k,v -> implementation "${v.groupId}:${v.artifactId}:${v.version}" }
-    implementation 'io.springfox:springfox-data-rest:2.8.0'
-    implementation 'io.springfox:springfox-swagger2:2.8.0'
-    implementation 'io.springfox:springfox-swagger-ui:2.8.0'     
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'com.h2database:h2'
+    sitmunlibs.each { k,v -> compile "${v.groupId}:${v.artifactId}:${v.version}" }
+    compile "io.springfox:springfox-data-rest:${springfox_swagger_version}"
+    compile "io.springfox:springfox-swagger2:${springfox_swagger_version}"
+    compile "io.springfox:springfox-swagger-ui:${springfox_swagger_version}"
 
     if (project.hasProperty('oracle')) {
-        implementation 'com.zaxxer:HikariCP:2.6.0'
-        implementation 'com.oracle:ojdbc7:12.1.0.2'
+        compile "com.zaxxer:HikariCP:${hikaricp_version}"
+        compile "com.oracle:ojdbc7:${ojdbc7_version}"
     } else if (project.hasProperty('postgresql')) {
-        implementation 'com.zaxxer:HikariCP:2.6.0'
-        implementation 'org.postgresql:postgresql:42.2.2'
+        compile "com.zaxxer:HikariCP:${hikaricp_version}"
+        compile "org.postgresql:postgresql:${postgresql_version}"
     } else {
-        implementation 'com.h2database:h2'
-        implementation 'org.springframework.boot:spring-boot-devtools'
+        compile 'com.h2database:h2'
+        compile 'org.springframework.boot:spring-boot-devtools'
     }
+
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'com.h2database:h2'
 }
 
 def profiles = 'h2'
@@ -75,15 +94,6 @@ publishing {
     }
 }
 
-sourceSets {
-	main {
-		resources {
-			srcDirs = ["$projectDir/dist", "$projectDir/src/main/resources"]
-		}
-	}
-}
-
-
 sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
@@ -91,15 +101,19 @@ sonarqube {
     }
 }
 
-
 task cloneSitmunPlugins() {
     description = 'Clone the git repositories declared in sitmunlibs to a temporary directory.'            
     doLast {        
         // Create temporary directory
-        ext.plugindir = File.createTempDir().toString()    
+        ext.plugindir = File.createTempDir().toString()
+      println(ext.plugindir)
         sitmunlibs.each { k, v ->            
-            grgit.clone(dir: "${cloneSitmunPlugins.plugindir}/${v.artifactId}", uri: "${v.gitrepo}", refToCheckout: "${v.version}")
-        }        
+            grgit.clone {
+              dir = "${cloneSitmunPlugins.plugindir}/${v.artifactId}"
+              uri = "${v.gitrepo}"
+              refToCheckout = "${v.version}"
+            }
+        }
     }
 }
 
@@ -111,10 +125,15 @@ task installSitmunPlugins(dependsOn: 'cloneSitmunPlugins') {
         sitmunlibs.each { k,v -> 
             def tempTask = tasks.create(name: "install_${v.artifactId}", type: GradleBuild)
             tempTask.buildFile = file("${cloneSitmunPlugins.plugindir}/${v.artifactId}/build.gradle")
-            tempTask.tasks = ['clean', 'install']       
+            tempTask.startParameter.projectProperties['customVersion'] = v.version
+            tempTask.tasks = ['clean', 'install', 'buildJS']
             tempTask.execute()
+
+            copy  {
+              from "${cloneSitmunPlugins.plugindir}/${v.artifactId}/dist"
+              into "node_modules"
+            }
         }
-        // Delete temporary directory        
         try {
             delete cloneSitmunPlugins.plugindir
         } catch (Exception e) {
@@ -123,4 +142,23 @@ task installSitmunPlugins(dependsOn: 'cloneSitmunPlugins') {
     }
 }
 
-task install(dependsOn: ['publishToMavenLocal', 'installSitmunPlugins'])
+node {
+  version = "${node_version}"
+  npmVersion = "${npm_version}"
+  yarnVersion = "${yarn_version}"
+  download = "${node_download}"
+}
+
+task npmRebuild(type: NpmTask, dependsOn: npm_install) {
+  args = ['rebuild', 'node-sass']
+}
+
+task npmBuildSitmunAdminApp(type: NpmTask, dependsOn: [installSitmunPlugins]) {
+  args = ['run-script', 'build']
+}
+
+installSitmunPlugins.dependsOn(npmRebuild)
+processResources.dependsOn(npmBuildSitmunAdminApp)
+compileJava.dependsOn(installSitmunPlugins)
+
+task install(dependsOn: [publishToMavenLocal, npmBuildSitmunAdminApp])
