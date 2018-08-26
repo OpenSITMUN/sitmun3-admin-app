@@ -165,15 +165,9 @@ task installPlugins(dependsOn: [clonePlugins, prepareNode]) {
       tempTask.startParameter.projectProperties['downloadNode'] = false
       tempTask.tasks = ['clean','install']
       tempTask.execute()
-      def pluginDistDir = file("$taskDir/${v.artifactId}")
-      pluginDistDir.mkdirs()
       copy  {
         from "$cloneDir/${v.artifactId}/dist"
         into "node_modules"
-      }
-      copy  {
-        from "$cloneDir/${v.artifactId}/dist"
-        into pluginDistDir
       }
     }
   }
