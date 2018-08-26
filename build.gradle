@@ -101,47 +101,6 @@ sonarqube {
     }
 }
 
-task cloneSitmunPlugins() {
-    description = 'Clone the git repositories declared in sitmunlibs to a temporary directory.'            
-    doLast {        
-        // Create temporary directory
-        ext.plugindir = File.createTempDir().toString()
-      println(ext.plugindir)
-        sitmunlibs.each { k, v ->            
-            grgit.clone {
-              dir = "${cloneSitmunPlugins.plugindir}/${v.artifactId}"
-              uri = "${v.gitrepo}"
-              refToCheckout = "${v.version}"
-            }
-        }
-    }
-}
-
-task installSitmunPlugins(dependsOn: 'cloneSitmunPlugins') {
-    description = 'Install dependency repos, cleans and installs the git repositories declared in sitmunlibs in a temporary directory. Depends on cloneSitmunPlugins.'
-    doLast {        
-        // It creates a temporary GradleBuild task for each sitmun dependency in sitmunlibs
-        // and runs the specified tasks for each
-        sitmunlibs.each { k,v -> 
-            def tempTask = tasks.create(name: "install_${v.artifactId}", type: GradleBuild)
-            tempTask.buildFile = file("${cloneSitmunPlugins.plugindir}/${v.artifactId}/build.gradle")
-            tempTask.startParameter.projectProperties['customVersion'] = v.version
-            tempTask.tasks = ['clean', 'install', 'buildJS']
-            tempTask.execute()
-
-            copy  {
-              from "${cloneSitmunPlugins.plugindir}/${v.artifactId}/dist"
-              into "node_modules"
-            }
-        }
-        try {
-            delete cloneSitmunPlugins.plugindir
-        } catch (Exception e) {
-            println("Temp directory ${cloneSitmunPlugins.plugindir} was not deleted. You can safely delete it afterwards.")
-        }
-    }
-}
-
 node {
   version = "${node_version}"
   npmVersion = "${npm_version}"
@@ -149,16 +108,91 @@ node {
   download = "${node_download}"
 }
 
-task npmRebuild(type: NpmTask, dependsOn: npm_install) {
-  args = ['rebuild', 'node-sass']
+sourceSets {
+  main {
+    resources {
+      srcDirs = ["$projectDir/dist", "$projectDir/src/main/resources"]
+    }
+  }
 }
 
-task npmBuildSitmunAdminApp(type: NpmTask, dependsOn: [installSitmunPlugins]) {
-  args = ['run-script', 'build']
+task clonePlugins {
+  description = 'Clone SITMUN plugins from GitHub".'
+  def taskDir = file("$buildDir/plugins-src")
+  outputs.dir taskDir
+  enabled = !taskDir.exists()
+  doLast {
+    taskDir.mkdirs()
+    sitmunlibs.each { k, v ->
+      grgit.clone {
+        dir = "$taskDir/${v.artifactId}"
+        uri = "${v.gitrepo}"
+        refToCheckout = "${v.version}"
+      }
+    }
+  }
 }
 
-installSitmunPlugins.dependsOn(npmRebuild)
-processResources.dependsOn(npmBuildSitmunAdminApp)
-compileJava.dependsOn(installSitmunPlugins)
+task prepareNode {
+  description = 'Prepare the NPM environment.'
+  def taskDir = file("node_modules")
+  outputs.dir taskDir
+  enabled = !taskDir.exists()
+  doLast {
+    def rebuild = tasks.create(name: "npmRebuild", type: NpmTask)
+    rebuild.args = ['rebuild', 'node-sass']
+    rebuild.execute()
+    def install = tasks.create(name: "npmInstallToo", type: NpmTask)
+    install.args = ['install']
+    install.execute()
+  }
+}
 
-task install(dependsOn: [publishToMavenLocal, npmBuildSitmunAdminApp])
+task installPlugins(dependsOn: [clonePlugins, prepareNode]) {
+  description = 'Install Plugins.'
+  def taskDir = file("$buildDir/plugins-modules")
+  def cloneDir = file("$buildDir/plugins-src")
+  outputs.dir taskDir
+  enabled = !taskDir.exists()
+  doLast {
+    taskDir.mkdirs()
+    // It creates a temporary GradleBuild task for each sitmun dependency in sitmunlibs
+    // and runs the specified tasks for each
+    sitmunlibs.each { k,v ->
+      def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: GradleBuild)
+      tempTask.buildFile = file("$cloneDir/${v.artifactId}/build.gradle")
+      tempTask.startParameter.projectProperties['customVersion'] = v.version
+      tempTask.startParameter.projectProperties['downloadNode'] = false
+      tempTask.tasks = ['clean','install']
+      tempTask.execute()
+      def pluginDistDir = file("$taskDir/${v.artifactId}")
+      pluginDistDir.mkdirs()
+      copy  {
+        from "$cloneDir/${v.artifactId}/dist"
+        into "node_modules"
+      }
+      copy  {
+        from "$cloneDir/${v.artifactId}/dist"
+        into pluginDistDir
+      }
+    }
+  }
+}
+
+task buildApp(dependsOn: installPlugins) {
+  doLast {
+    def build = tasks.create(name: "buildAppToo", type: NpmTask)
+    build.args = ['run-script', 'build']
+    build.execute()
+  }
+}
+
+processResources.dependsOn(buildApp)
+
+task install(dependsOn: publishToMavenLocal)
+
+clean {
+  delete "node_modules"
+  delete "dist"
+  delete "database"
+}
