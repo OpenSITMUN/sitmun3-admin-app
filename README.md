@@ -11,6 +11,13 @@
 - <http://localhost:8080/h2-console/> is the location of the H2 console.
 - A test user is available (`admin`:`admin`)
 
+## Build and run in Docker (development)
+- Clone the repository.
+- Prepare the environment with `./gradlew assemble`.
+- Run `./gradlew docker` to build the docker image.
+- Run `./gradlew dockerRun` to start the container.
+- To stop and to remove the container you can run `./gradlew dockerStop`.
+
 ## Code development
 
 Run `./build-scripts/build-local.sh`. 
