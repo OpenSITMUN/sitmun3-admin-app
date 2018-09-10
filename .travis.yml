@@ -2,8 +2,6 @@ addons:
   sonarcloud:
     organization: sitmun
 
-before_install: ./build-scripts/install-dependencies.sh
-
 script:
   - ./build-scripts/script.sh
   - sonar-scanner
@@ -26,3 +24,4 @@ cache:
 branches:
   only:
   - master
+  - develop
