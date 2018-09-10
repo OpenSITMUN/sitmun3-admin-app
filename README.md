@@ -15,7 +15,7 @@
 - Clone the repository.
 - Prepare the environment with `./gradlew assemble`.
 - Run `./gradlew docker` to build the docker image.
-- Run `./gradlew dockerRun` to start the container and open <http://localhost:8080>.
+- Run `./gradlew dockerRun` to start the container and open <http://localhost:8080> (wait a few seconds).
 - To stop and to remove the container you can run `./gradlew dockerStop`.
 
 ## Code development

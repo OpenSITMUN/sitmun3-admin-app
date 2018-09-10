@@ -48,7 +48,7 @@ ext {
         gitrepo : 'https://github.com/sitmun/sitmun-plugin-core.git',
         groupId : 'org.sitmun',
         artifactId : 'sitmun-plugin-core',
-        version : 'develop'
+        version : 'master'
     ]
 }
 
@@ -185,6 +185,7 @@ task buildApp(dependsOn: installPlugins) {
   }
 }
 
+compileJava.dependsOn(installPlugins)
 processResources.dependsOn(buildApp)
 
 task install(dependsOn: publishToMavenLocal)
