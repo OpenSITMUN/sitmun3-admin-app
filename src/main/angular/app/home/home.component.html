@@ -21,6 +21,38 @@
 			
 				<a *sitmunHasAnyAuthority="'ADMIN SITMUN'" mat-list-item
 				[routerLink]="['/role-list']">{{'menu.roles'| translate}} </a>
+				<h3 [routerLink]="['/connection-list']">
+			{{ 'menu.connections'|translate}}</h3>
+
+			<h3 [translate]="'menu.tasks'">Tasks</h3> 
+				<a *sitmunHasAnyAuthority="['ADMIN SITMUN','ADMIN ORGANIZACION']"
+				mat-list-item [routerLink]="['/task-list']">{{'menu.taskManagement'|
+				translate}}</a> 
+				<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+		[routerLink]="['/task-type-list']">{{'menu.taskTypes'|
+			translate}} </a>	
+			<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+		[routerLink]="['/task-group-list']">{{'menu.taskGroups'|
+			translate}} </a>	
+			<h3 [routerLink]="['/service-list']">
+			{{ 'menu.services'|translate}}</h3>
+			<h3 [translate]="'menu.cartographies'">Cartographies</h3> 
+				<a *sitmunHasAnyAuthority="['ADMIN SITMUN','ADMIN ORGANIZACION']"
+				mat-list-item [routerLink]="['/cartography-list']">{{'menu.cartographyManagement'|
+				translate}}</a> 
+				<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+				[routerLink]="['/cartography-group-list']">{{'menu.cartographyGroups'|
+			translate}} </a>	
+			<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+				[routerLink]="['/background-list']">{{'menu.backgrounds'|
+			translate}} </a>
+
+			<h3 [routerLink]="['/tree-list']">
+			{{ 'menu.trees'|translate}}</h3>
+
+			<h3 [routerLink]="['/application-list']">
+			{{ 'menu.applications'|translate}}</h3>
+				
 
 
 </span> 

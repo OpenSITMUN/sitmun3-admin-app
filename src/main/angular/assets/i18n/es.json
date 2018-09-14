@@ -1,7 +1,7 @@
 {
    "true":"Si",
    "false":"No",
-    "application":{"name":"Administración - Diputación Barcelona"},
+    "applicationName":"Administración - Diputación Barcelona",
    "mat-paginator-intl":{
     	"first_page":"Primera página",
     	"items_per_page":"elementos por página",

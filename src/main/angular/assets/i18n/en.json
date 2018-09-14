@@ -1,109 +1,307 @@
 {
-   "true":"Yes",
-   "false":"No",
-   "application":{"name":"Management - Diputació Barcelona"},
-   "mat-paginator-intl":{
-    	"first_page":"First page",
-    	"items_per_page":"items per page",
-    	"last_page":"Last page",
-    	"next_page":"Next page",
-    	"of":"of",
-		"previous_page":"Previous page"},
-   "menu":{
-    	"territories":"Territories",
-    	"users":"Users",
-    	"roles":"Role management",
-    	"territoryManagement":"Territory management",
-    	"territoryTypes":"Territory type management",
-    	"userManagement":"Users management",
-    	"account":"Account"
+	"true": "Yes",
+	"false": "No",
+	"applicationName": "Management - Diputació Barcelona",
+	"mat-paginator-intl": {
+		"first_page": "First page",
+		"items_per_page": "items per page",
+		"last_page": "Last page",
+		"next_page": "Next page",
+		"of": "of",
+		"previous_page": "Previous page"
 	},
-	"global":{
-		"actions":"Actions",
-		"add":"Add",
-		"edit":"Edit",
-		"delete":"Delete",
-		"save":"Save",
-		"cancel":"Cancel",
-		"back":"Cancel",
-		"data":"Data",
-		"login":"Login"
+	"menu": {
+		"territories": "Territories",
+		"users": "Users",
+		"roles": "Role management",
+		"territoryManagement": "Territory management",
+		"territoryTypes": "Territory type management",
+		"userManagement": "Users management",
+		"account": "Account",
+		"connections": "Connections",
+		"tasks": "Tasks",
+		"taskManagement": "Task magement",
+		"taskTypes": "Task types",
+		"taskGroups": "Task groups",
+		"services": "Services",
+		"cartographies": "Cartographies",
+		"cartographyManagement": "Cartography management",
+		"cartographyGroups": "Cartography groups",
+		"backgrounds": "Backgrounds",
+		"trees": "Trees",
+		"applications": "Applications"
 	},
-	"territory":{
-		"item":"Territory",
-		"data":"Data",
-		"list":"Territories",
+	"global": {
+		"actions": "Actions",
+		"add": "Add",
+		"edit": "Edit",
+		"delete": "Delete",
+		"save": "Save",
+		"cancel": "Cancel",
+		"back": "Cancel",
+		"data": "Data",
+		"login": "Login"
+	},
+	"territory": {
+		"item": "Territory",
+		"data": "Data",
+		"list": "Territories",
+		"name": "Name",
+		"scope": "Scope",
+		"type": "Type",
+		"blocked": "Blocked",
+		"ext": "Extent",
+		"createdDate": "Created date",
+		"organizationName": "Organization name",
+		"address": "Address",
+		"email": "Email",
+		"logo": "Logo",
+		"members": "Members",
+		"comments": "Comments"
+	},
+	"territoryType": {
+		"item": "Territory type",
+		"list": "Territory types",
+		"name": "Name",
+		"comments": "Comments"
+	},
+	"role": {
+		"item": "Role",
+		"data": "Data",
+		"list": "Roles",
+		"name": "Name",
+		"comments": "Comments"
+	},
+	"user": {
+		"item": "User",
+		"data": "Data",
+		"list": "Users",
+		"username": "Username",
+		"password": "Password",
+		"password-change": "Password change",
+		"confirmPassword": "Confirm password",
+		"administrator": "Administrator",
+		"blocked": "Blocked",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"positions": "Positions",
+		"permissions": "Permissions"
+	},
+	"userPosition": {
+		"item": "Position",
+		"list": "Positions",
+		"territory": "Territory",
+		"name": "Name",
+		"email": "Email",
+		"organization": "Organization"
+	},
+	"userConfiguration": {
+		"item": "Permission",
+		"list": "Permissions",
+		"territory": "Territory",
+		"role": "Role"
+	},
+	"account": {
+		"item": "Account",
+		"username": "Username",
+		"password": "Password",
+		"confirmPassword": "Confirm password",
+		"password-change": "Password change",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"data": "Data",
+		"change-password": "Change password",
+		"closeSession": "Close session",
+		"password-dont-match": "The password and its confirmation do not match!",
+		"password-change-success": "Password changed!",
+		"update-success": "Data changed!"
+	},
+	"login": {
+		"bad-credentials": "Bad credentials"
+	},
+	"connection": {
+		"item": "Connection",
+		"data": "Data",
+		"list": "Connections",
+		"name": "Name",
+  		"type": "Type",
+  		"user": "User",
+  		"password": "Password",
+  		"connectionString": "Connection string"
+	},
+	"task": {
+		"item": "Task",
+		"data": "Data",
+		"list": "Tasks",
+		"name": "Name",
+		"order": "Order",
+		"createdDate": "Created Date",
+		"group": "Group",
+		"type": "type",
+		"parameters": "Parameters",
+		"connection": "Connection",
+		"roles": "Roles",
+		"availabilities": "Availabilities"
+	},
+	"taskParameter": {
+		"item": "Task parameter",
+		"list": "Task parameters",
 		"name":"Name",
-		"scope":"Scope",
 		"type":"Type",
-		"blocked":"Blocked",
-		"ext":"Extent",
+		"value":"Value",
+		"order":"Order",
+		"task":"Task"
+	},
+	"taskAvailability": {
+		"item": "Task availability",
+		"data": "Data",
+		"list": "Task availabilities",
+		"territory":"Territory",
 		"createdDate":"Created date",
-		"organizationName":"Organization name",
-		"address":"Address",
-		"email":"Email",
-		"logo":"Logo",
+		"task":"Task"
+	},
+	"taskType": {
+		"item": "Task type",
+		"data": "Data",
+		"list": "Task types",
+		"name":"Name"
+	},
+	"taskGroup": {
+		"item": "Task group",
+		"data": "Data",
+		"list": "Task groups",
+		"name":"Name"
+	},
+	"service": {
+		"item": "Service",
+		"data": "Data",
+		"list": "Service",
+		"name":"Name",
+		"type":"Type",
+		"url":"URL",
+		"projections":"Projections",
+		"legend":"Legend",
+		"infoUrl":"Info URL",
+		"createdDate":"Created Date",
+  		"connection":"Connection",
+  		"parameters":"Parameters"
+	},
+	"serviceParameter": {
+		"item": "Service parameter",
+		"list": "Service parameters",
+		"name":"Name",
+		"type":"Type",
+		"value":"Value",
+		"order":"Order",
+		"service":"Service"
+	},
+	"cartography": {
+		"item": "Cartography",
+		"data": "Data",
+		"list": "Cartographies",
+		"name":"Name",
+		"type":"Type",
+		"visible":"Visible",
+		"transparency":"Transparency",
+		"queryable":"Queryable",
+		"queryAct":"Query update",
+		"queryLay":"Query layer",
+		"createdDate":"Created date",
+		"order":"Order", 
+		"minimumScale":"Minimum scale",
+		"maximumScale":"Maximum scale",
+		"layers":"Layers",
+		"service":"Service",
+		"connection":"Connection",
+		"availabilities":"Availabilities",
+		"selectable":"Selectable",
+		"selectionLayer":"Selection layer",
+		"selectionService":"Selection service",
+		"legendTip":"Legend tip",
+		"legendUrl":"Legend URL",
+		"editable":"Editable",
+		"metadataUrl":"Metdata URL",
+		"themeable":"Themable",
+		"geometryType":"Geometry type"
+	},
+	"cartographyGroup": {
+		"item": "Cartography group",
+		"data": "Data",
+		"list": "Cartography groups",
+		"name":"Name",
+		"type":"Type", 
 		"members":"Members",
-		"comments":"Comments"
+		"roles":"Roles"
 	},
-	"territoryType":{
-		"item":"Territory type",
-		"list":"Territory types",
-		"name":"Name",
-		"comments":"Comments"
-	},
-	"role":{
-		"item":"Role",
-		"data":"Data",
-		"list":"Roles",
-		"name":"Name",
-		"comments":"Comments"
-	},
-	"user":{
-		"item":"User",
-		"data":"Data",
-		"list":"Users",
-		"username":"Username",
-		"password":"Password",
-		"password-change":"Password change",
-		"confirmPassword":"Confirm password",
-		"administrator":"Administrator",
-		"blocked":"Blocked",
-		"firstName":"First name",
-		"lastName":"Last name",
-		"positions":"Positions",
-		"permissions":"Permissions"
-	},
-	"userPosition":{
-		"item":"Position",
-		"list":"Positions",
+	"cartographyAvailability": {
+		"item": "Cartography availability",
+		"data": "Data",
+		"list": "Cartography availabilities",
 		"territory":"Territory",
+		"createdDate":"Created date",
+		"cartography":"cartography"
+	},
+	"background": {
+		"item": "Background",
+		"data": "Data",
+		"list": "Backgrounds",
 		"name":"Name",
-		"email":"Email",
-		"organization":"Organization"
+		"description":"Description",
+		"active":"active",
+		"createdDate":"Created date",
+		"cartographyGroup":"Cartography group"
 	},
-	"userConfiguration":{
-		"item":"Permission",
-		"list":"Permissions",
-		"territory":"Territory",
-		"role":"Role"
+	"tree": {
+		"item": "Tree",
+		"data": "Data",
+		"list": "Trees",
+		"name":"Name",
+		"nodes":"Nodes"
 	},
-	"account":{
-		"item":"Account",
-		"username":"Username",
-		"password":"Password",
-		"confirmPassword":"Confirm password",
-		"password-change":"Password change",
-		"firstName":"First name",
-		"lastName":"Last name",
-		"data":"Data",
-		"change-password":"Change password",
-    	"closeSession":"Close session",
-    	"password-dont-match":"The password and its confirmation do not match!",
-    	"password-change-success":"Password changed!",
-    	"update-success":"Data changed!"
+	"treeNode": {
+		"item": "Tree node",
+		"data": "Data",
+		"list": "Tree nodes",
+		"name":"Name",
+		"tooltip":"Tooltip", 
+		"ordee":"Order",
+		"active":"Active",
+		"parent":"parent",
+		"cartography":"Cartography",
+		"tree":"Tree"
 	},
-	"login":{
-		"bad-credentials":"Bad credentials"
+	"application": {
+		"item": "Application",
+		"data": "Data",
+		"list": "Applications",
+		"name":"Name",
+		"type":"Type",
+		"title":"Title",
+		"theme":"Theme",
+		"createdDate":"Created date",
+		"roles":"Roles",
+		"availableRoles":"Roles",
+		"trees":"Trees",
+		"scales":"Scales",
+  		"projections":"Projections",
+  		"treeAutoRefresh":"Tree auto-refresh",
+		"backgrounds":"Backgrounds",
+		"situationMap":"Situation map",    
+		"parameters":"Parameters"
+	},
+	"applicationParameter": {
+		"item": "Application parameter",
+		"list": "Application parameters",
+		"name":"Name",
+		"type":"Type",
+		"value":"Value",
+		"order":"Order",
+		"application":"Application"
+	},
+	"applicationBackground": {
+		"item": "Application background",
+		"list": "Application backgrounds",
+		"background": "Background",
+		"order":"Order"
 	}
 }
