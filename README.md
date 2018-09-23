@@ -5,8 +5,8 @@
 
 ## Build and run (development)
 - Clone the repository.
-- Prepare the environment with `./gradlew assemble`.
-- Run `./gradlew bootRun` and open <http://localhost:8080>.
+- Prepare the environment with `./gradlew assemble` (Linux, macOS) or `gradlew.bat assemble` (Windows).
+- Run `./gradlew bootRun` or (Linux, OSX) or `gradlew.bat bootRun` (Windows). and open <http://localhost:8080>.
 - <http://localhost:8080/swagger-ui.html> exposes SITMUN Core API.
 - <http://localhost:8080/h2-console/> is the location of the H2 console.
 - A test user is available (`admin`:`admin`)
