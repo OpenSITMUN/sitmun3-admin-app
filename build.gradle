@@ -109,7 +109,10 @@ node {
   version = "${node_version}"
   npmVersion = "${npm_version}"
   yarnVersion = "${yarn_version}"
-  download = "${node_download}"
+  download =  "${node_download}"  
+  workDir = file("${project.buildDir}/nodejs")
+  npmWorkDir = file("${project.buildDir}/npm")
+  yarnWorkDir = file("${project.buildDir}/yarn")
 }
 
 sourceSets {
@@ -124,10 +127,11 @@ task clonePlugins {
   description = 'Clone SITMUN plugins from GitHub".'
   def taskDir = file("$buildDir/plugins-src")
   outputs.dir taskDir
-  enabled = !taskDir.exists()
+  enabled = project.hasProperty('force') || !taskDir.exists()
   doLast {
     taskDir.mkdirs()
     sitmunlibs.each { k, v ->
+      delete "$taskDir/${v.artifactId}" 
       grgit.clone {
         dir = "$taskDir/${v.artifactId}"
         uri = "${v.gitrepo}"
@@ -141,7 +145,7 @@ task prepareNode(dependsOn: 'npmInstall') {
   description = 'Prepare the NPM environment.'
   def taskDir = file("node_modules")
   outputs.dir taskDir
-  enabled = !taskDir.exists()
+  enabled = project.hasProperty('force') || !taskDir.exists()
   doLast {
     def rebuild = tasks.create(name: "npmRebuild", type: NpmTask)
     rebuild.args = ['rebuild', 'node-sass']
@@ -157,17 +161,17 @@ task installPlugins(dependsOn: [clonePlugins, prepareNode]) {
   def taskDir = file("$buildDir/plugins-modules")
   def cloneDir = file("$buildDir/plugins-src")
   outputs.dir taskDir
-  enabled = !taskDir.exists()
+  enabled = project.hasProperty('force') || !taskDir.exists()
   doLast {
     taskDir.mkdirs()
     // It creates a temporary GradleBuild task for each sitmun dependency in sitmunlibs
     // and runs the specified tasks for each
     sitmunlibs.each { k,v ->
-      def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: GradleBuild)
-      tempTask.buildFile = file("$cloneDir/${v.artifactId}/build.gradle")
-      tempTask.startParameter.projectProperties['customVersion'] = v.version
-      tempTask.startParameter.projectProperties['downloadNode'] = false
-      tempTask.tasks = ['clean','install']
+      def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: Exec)
+      tempTask.workingDir = file("$cloneDir/${v.artifactId}")
+      tempTask.commandLine = ["./gradlew" , "install", 
+          "-PcustomVersion=${v.version}", "-PdownloadNode=false", 
+          "-PcacheDir=${project.buildDir}", "--info", "--stacktrace"]
       tempTask.execute()
       copy  {
         from "$cloneDir/${v.artifactId}/dist"
