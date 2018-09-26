@@ -114,17 +114,17 @@ sourceSets {
   }
 }
 
+def cloneDir = file("$buildDir/plugins-src")
+
 task clonePlugins {
   description = 'Clone SITMUN plugins from GitHub".'
-  def taskDir = file("$buildDir/plugins-src")
-  outputs.dir taskDir
-  enabled = project.hasProperty('force') || !taskDir.exists()
   doLast {
-    taskDir.mkdirs()
+    if (!cloneDir.exists()) {
+      mkdir cloneDir
+    }
     sitmunlibs.each { k, v ->
-      delete "$taskDir/${v.artifactId}" 
       grgit.clone {
-        dir = "$taskDir/${v.artifactId}"
+        dir = "$cloneDir/${v.artifactId}"
         uri = "${v.gitrepo}"
         refToCheckout = "${v.version}"
       }
@@ -132,7 +132,7 @@ task clonePlugins {
   }
 }
 
-def cloneDir = file("$buildDir/plugins-src")
+clonePlugins.mustRunAfter clean
 
 task installPlugins(dependsOn: clonePlugins) {
   description = 'Install Plugins.'
@@ -140,13 +140,16 @@ task installPlugins(dependsOn: clonePlugins) {
     // It creates a temporary GradleBuild task for each sitmun dependency in sitmunlibs
     // and runs the specified tasks for each
     sitmunlibs.each { k,v ->
-      def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: Exec)
-      tempTask.workingDir = file("$cloneDir/${v.artifactId}")
-      tempTask.commandLine = ["./gradlew" , "install", "-PcustomVersion=${v.version}"]
+      def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: GradleBuild)
+      tempTask.dir = file("$cloneDir/${v.artifactId}")
+      tempTask.startParameter.projectProperties["customVersion"] = v.version
+      tempTask.tasks = [ "install" ]
       tempTask.execute()
     }
   }
 }
+
+installPlugins.mustRunAfter clonePlugins
 
 task installModules(dependsOn: [installPlugins, npmInstall]) {
   doLast {
@@ -159,6 +162,9 @@ task installModules(dependsOn: [installPlugins, npmInstall]) {
   }
 }
 
+installModules.mustRunAfter installPlugins
+installModules.mustRunAfter npmInstall
+
 task buildApp(dependsOn: installModules) {
   doLast {
     def build = tasks.create(name: "buildAppToo", type: NpmTask)
@@ -167,8 +173,14 @@ task buildApp(dependsOn: installModules) {
   }
 }
 
+buildApp.mustRunAfter installModules
+
 compileJava.dependsOn installPlugins 
+compileJava.mustRunAfter installPlugins 
+
 processResources.dependsOn buildApp
+processResources.mustRunAfter buildApp
+
 
 task install(dependsOn: publishToMavenLocal)
 
