@@ -3,6 +3,10 @@
 
 # SITMUN Administration Application
 
+## Requirements
+* Java 8 release
+* Node 8.x (LTS) or greater LTS release
+
 ## Build and run (development)
 - Clone the repository.
 - Prepare the environment with `./gradlew assemble` (Linux, macOS) or `gradlew.bat assemble` (Windows).
