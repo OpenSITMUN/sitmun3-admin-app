@@ -36,6 +36,7 @@
     "theme": "Tema",
     "title": "Títol",
     "treeAutoRefresh": "Auto actualització de l'arbre",
+    
     "trees": "Arbres",
     "type": "Tipus"
   },
@@ -157,6 +158,7 @@
     "taskGroups": "Grups de tasques",
     "taskManagement": "Gestió de tasques",
     "taskTypes": "Tipus de tasques",
+    "taskUIs": "UIs de tasques",
     "tasks": "Tasques",
     "territories": "Territoris",
     "territoryManagement": "Gestió de Territoris",
@@ -198,6 +200,7 @@
   "task": {
     "availabilities": "Disponibilitat",
     "connection": "Connexió",
+    "ui":"UI", 
     "createdDate": "Data de creació",
     "data": "Dades",
     "group": "Grup",
@@ -208,6 +211,14 @@
     "parameters": "Paràmetre",
     "roles": "Rol",
     "type": "tipus"
+  },
+  "taskUI": {
+    "data": "Dades",
+    "item": "UI de tasca",
+    "list": "UIs de tascas",
+    "name": "Nom",
+    "tooltip": "Tooltip",
+    "order":"Ordre"
   },
   "taskAvailability": {
     "createdDate": "Data de creació",
@@ -266,7 +277,8 @@
     "item": "Arbre",
     "list": "Arbres",
     "name": "Nom",
-    "nodes": "Nodes"
+    "nodes": "Nodes",
+    "availableRoles": "Rols"
   },
   "treeNode": {
     "active": "Actiu",

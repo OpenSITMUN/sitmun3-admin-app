@@ -52,7 +52,11 @@
 			translate}} </a>	
 			<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
 		[routerLink]="['/task-group-list']">{{'menu.taskGroups'|
+			translate}} </a>
+							<a mat-list-item *sitmunHasAnyAuthority="'ADMIN SITMUN'"
+		[routerLink]="['/task-ui-list']">{{'menu.taskUIs'|
 			translate}} </a>	
+				
 			<h3 [routerLink]="['/service-list']">
 			{{ 'menu.services'|translate}}</h3>
 			<h3 [translate]="'menu.cartographies'">Cartographies</h3> 

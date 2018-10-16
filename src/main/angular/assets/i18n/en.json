@@ -157,6 +157,7 @@
     "taskGroups": "Task groups",
     "taskManagement": "Task magement",
     "taskTypes": "Task types",
+    "taskUIs": "Task UIs",
     "tasks": "Tasks",
     "territories": "Territories",
     "territoryManagement": "Territory management",
@@ -238,6 +239,14 @@
     "list": "Task types",
     "name": "Name"
   },
+  "taskUI": {
+    "data": "Data",
+    "item": "Task UI",
+    "list": "Task UIs",
+    "name": "Name",
+    "tooltip": "Tooltip",
+    "order":"Order"
+  },
   "territory": {
     "address": "Address",
     "blocked": "Blocked",
@@ -266,7 +275,8 @@
     "item": "Tree",
     "list": "Trees",
     "name": "Name",
-    "nodes": "Nodes"
+    "nodes": "Nodes",
+    "availableRoles": "Roles"
   },
   "treeNode": {
     "active": "Active",

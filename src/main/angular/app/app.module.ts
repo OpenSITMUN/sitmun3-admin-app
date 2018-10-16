@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { SitmunPluginCoreModule, TerritoryListComponent, TerritoryEditComponent, TerritoryTypeListComponent, TerritoryTypeEditComponent, RoleListComponent, RoleEditComponent, UserListComponent, UserEditComponent,AuthInterceptor,AuthExpiredInterceptor, UserChangePasswordComponent,LoginComponent,LoginService,AccountEditComponent,AccountChangePasswordComponent,HasAnyAuthorityDirective,HasAnyAuthorityOnTerritoryDirective,ConnectionListComponent,ConnectionEditComponent,TaskListComponent,TaskEditComponent,TaskTypeListComponent,TaskTypeEditComponent,TaskGroupListComponent,TaskGroupEditComponent,ServiceListComponent,ServiceEditComponent,CartographyEditComponent,CartographyListComponent,CartographyGroupEditComponent,CartographyGroupListComponent,BackgroundListComponent, BackgroundEditComponent,TreeListComponent,TreeEditComponent,ApplicationListComponent,ApplicationEditComponent  } from 'sitmun-plugin-core';
+import { SitmunPluginCoreModule, TerritoryListComponent, TerritoryEditComponent, TerritoryTypeListComponent, TerritoryTypeEditComponent, RoleListComponent, RoleEditComponent, UserListComponent, UserEditComponent,AuthInterceptor,AuthExpiredInterceptor, UserChangePasswordComponent,LoginComponent,LoginService,AccountEditComponent,AccountChangePasswordComponent,HasAnyAuthorityDirective,HasAnyAuthorityOnTerritoryDirective,ConnectionListComponent,ConnectionEditComponent,TaskListComponent,TaskEditComponent,TaskTypeListComponent,TaskTypeEditComponent,TaskGroupListComponent,TaskGroupEditComponent,ServiceListComponent,ServiceEditComponent,CartographyEditComponent,CartographyListComponent,CartographyGroupEditComponent,CartographyGroupListComponent,BackgroundListComponent, BackgroundEditComponent,TreeListComponent,TreeEditComponent,ApplicationListComponent,ApplicationEditComponent,TaskUIListComponent,TaskUIEditComponent  } from 'sitmun-plugin-core';
 
 const appRoutes: Routes = [
     {
@@ -127,6 +127,17 @@ const appRoutes: Routes = [
     {
         path: 'task-type-edit/:id',
         component: TaskTypeEditComponent
+    },  {
+        path: 'task-ui-list',
+        component: TaskUIListComponent
+    },
+    {
+        path: 'task-ui-add',
+        component: TaskUIEditComponent
+    },
+    {
+        path: 'task-ui-edit/:id',
+        component: TaskUIEditComponent
     },  {
         path: 'service-list',
         component: ServiceListComponent

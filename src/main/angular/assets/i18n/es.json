@@ -158,6 +158,7 @@
     "taskManagement": "Gestión de tareas",
     "taskTypes": "Tipos de tareas",
     "tasks": "Tareas",
+    "taskUIs": "UIs de tareas",
     "territories": "Territorios",
     "territoryManagement": "Gestión de Territorios",
     "territoryTypes": "Gestión de Tipos de territorio",
@@ -238,6 +239,14 @@
     "list": "Tipos de tarea",
     "name": "Nombre"
   },
+  "taskUI": {
+    "data": "Datos",
+    "item": "UI de tarea",
+    "list": "UIs de tareas",
+    "name": "Nombre",
+    "tooltip": "Tooltip",
+    "order":"Orden"
+  },
   "territory": {
     "address": "Dirección",
     "blocked": "Bloqueado",
@@ -266,7 +275,8 @@
     "item": "Árbol",
     "list": "Árboles",
     "name": "Nombre",
-    "nodes": "Nodos"
+    "nodes": "Nodos",
+    "availableRoles": "Roles"
   },
   "treeNode": {
     "active": "Activo",
