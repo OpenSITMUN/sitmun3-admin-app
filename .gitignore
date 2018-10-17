@@ -21,3 +21,4 @@ database/
 /dist/
 /npm-debug.log
 package-lock.json
+libs

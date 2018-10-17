@@ -286,9 +286,10 @@
     "list": "Tree nodes",
     "name": "Name",
     "ordee": "Order",
-    "parent": "parent",
+    "parent": "Parent",
     "tooltip": "Tooltip",
-    "tree": "Tree"
+    "tree": "Tree",
+    "isGroup": "Is group"
   },
   "true": "Yes",
   "user": {

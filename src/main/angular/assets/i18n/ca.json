@@ -288,9 +288,10 @@
     "list": "Nodes de l'arbre",
     "name": "Nom",
     "ordee": "Ordre",
-    "parent": "pare",
+    "parent": "Pare",
     "tooltip": "Tooltip",
-    "tree": "Arbre"
+    "tree": "Arbre",
+    "isGroup": "És grup"
   },
   "true": "Si",
   "user": {

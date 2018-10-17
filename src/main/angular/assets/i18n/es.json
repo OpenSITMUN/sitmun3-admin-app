@@ -286,9 +286,10 @@
     "list": "Nodos del árbol",
     "name": "Nombre",
     "ordee": "Orden",
-    "parent": "padre",
+    "parent": "Padre",
     "tooltip": "Tooltip",
-    "tree": "Árbol"
+    "tree": "Árbol",
+    "isGroup": "Es grupo"
   },
   "true": "Si",
   "user": {
