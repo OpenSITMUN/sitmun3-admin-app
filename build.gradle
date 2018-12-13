@@ -207,6 +207,8 @@ docker {
 dockerRun {
   name project.name
   image "${project.group}/${project.name}:${project.version}".toLowerCase()
-  clean true
+  clean false
   ports '8080:8080'
 }
+
+dockerRemoveContainer.shouldRunAfter dockerStop
