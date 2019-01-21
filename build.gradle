@@ -6,7 +6,11 @@ plugins {
   id "com.palantir.docker" version "0.20.1"
 }
 
+// Output result file type definition
+//- use 'java' value to create a JAR file
+//- use 'war' value to create a deployable WAR file
 apply plugin: 'java'
+
 def targetJavaVersion = JavaVersion.VERSION_1_8;
 sourceCompatibility = "${targetJavaVersion}"
 targetCompatibility = "${targetJavaVersion}"
@@ -210,5 +214,3 @@ dockerRun {
   clean false
   ports '8080:8080'
 }
-
-dockerRemoveContainer.shouldRunAfter dockerStop
