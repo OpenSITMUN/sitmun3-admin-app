@@ -5,7 +5,7 @@
 
 ## Requirements
 * Java 8 release
-* Node 8.x (LTS) or greater LTS release
+* Node 8.x (LTS) or greater LTS release and npm
 
 ## Build and run (development)
 - Clone the repository.
