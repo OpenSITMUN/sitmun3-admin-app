@@ -285,7 +285,7 @@
     "item": "Nodo del árbol",
     "list": "Nodos del árbol",
     "name": "Nombre",
-    "ordee": "Orden",
+    "orden": "Orden",
     "parent": "Padre",
     "tooltip": "Tooltip",
     "tree": "Árbol",
