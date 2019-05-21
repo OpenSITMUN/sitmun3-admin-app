@@ -106,9 +106,12 @@ publishing {
 sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
-        property 'sonar.organization', 'sitmun'     
+        property 'sonar.organization', 'sitmun'             
     }
+    properties['sonar.sources'] += 'src/main/angular'
 }
+
+   
 
 sourceSets {
   main {
