@@ -9,13 +9,14 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { SitmunPluginCoreModule, TerritoryListComponent, TerritoryEditComponent, TerritoryTypeListComponent, TerritoryTypeEditComponent,
+
+import { SitmunFrontendGuiModule, TerritoryListComponent, TerritoryEditComponent, TerritoryTypeListComponent, TerritoryTypeEditComponent,
   RoleListComponent, RoleEditComponent, UserListComponent, UserEditComponent, UserChangePasswordComponent,
   LoginComponent,AccountEditComponent,AccountChangePasswordComponent,
   ConnectionListComponent,ConnectionEditComponent,TaskListComponent,TaskEditComponent,TaskTypeListComponent,TaskTypeEditComponent,TaskGroupListComponent,
   TaskGroupEditComponent,ServiceListComponent,ServiceEditComponent,CartographyEditComponent,CartographyListComponent,CartographyGroupEditComponent,
   CartographyGroupListComponent,BackgroundListComponent, BackgroundEditComponent,TreeListComponent,TreeEditComponent,ApplicationListComponent,
-  ApplicationEditComponent,TaskUIListComponent,TaskUIEditComponent  } from 'sitmun-plugin-core';
+  ApplicationEditComponent,TaskUIListComponent,TaskUIEditComponent  } from 'sitmun-frontend-gui';
 
 import { SitmunFrontendCoreModule,
   AuthInterceptor, AuthExpiredInterceptor} from 'sitmun-frontend-core';
@@ -244,8 +245,8 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         FlexLayoutModule,
-        SitmunFrontendCoreModule,
-        SitmunPluginCoreModule,
+        SitmunFrontendCoreModule.forRoot(),
+        SitmunFrontendGuiModule,
         MatSidenavModule,
 
 
