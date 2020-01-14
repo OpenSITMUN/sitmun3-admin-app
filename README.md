@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.org/sitmun/sitmun-admin-app)
+[![Build Status](https://travis-ci.com/sitmun/sitmun-admin-app.svg?branch=master)](https://travis-ci.com/sitmun/sitmun-admin-app)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=org.sitmun%3Asitmun-admin-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.sitmun%3Asitmun-admin-app)
 
 # SITMUN Administration Application
@@ -33,7 +33,4 @@ If you already had that file, simply add the line to it.
 If you the SonarCloud analysis has been properly run, you can see the report by clicking on the quality gate badge above.
 
 ## Dependencies
-This project depends on these plugins (already considered in the build script):
-
-- [sitmun-plugin-core](https://github.com/sitmun/sitmun-plugin-core)
 
