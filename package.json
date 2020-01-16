@@ -10,6 +10,7 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "repository":"git://github.com/sitmun/sitmun-admin-app.git",
   "dependencies": {
     "@angular/animations": "~6.1.0",
     "@angular/cdk": "~6.1.0",
