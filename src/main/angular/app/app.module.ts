@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { ExternalConfigurationService } from './ExternalConfigurationService';
-import { AngularHalModule } from 'angular-hal';
+import { AngularHalModule } from '@sitmun/frontend-core';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -16,10 +16,10 @@ import { SitmunFrontendGuiModule, TerritoryListComponent, TerritoryEditComponent
   ConnectionListComponent,ConnectionEditComponent,TaskListComponent,TaskEditComponent,TaskTypeListComponent,TaskTypeEditComponent,TaskGroupListComponent,
   TaskGroupEditComponent,ServiceListComponent,ServiceEditComponent,CartographyEditComponent,CartographyListComponent,CartographyGroupEditComponent,
   CartographyGroupListComponent,BackgroundListComponent, BackgroundEditComponent,TreeListComponent,TreeEditComponent,ApplicationListComponent,
-  ApplicationEditComponent,TaskUIListComponent,TaskUIEditComponent  } from 'sitmun-frontend-gui';
+  ApplicationEditComponent,TaskUIListComponent,TaskUIEditComponent  } from '@sitmun/frontend-gui';
 
 import { SitmunFrontendCoreModule,
-  AuthInterceptor, AuthExpiredInterceptor} from 'sitmun-frontend-core';
+  AuthInterceptor, AuthExpiredInterceptor} from '@sitmun/frontend-core';
 
 const appRoutes: Routes = [
     {

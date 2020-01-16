@@ -40,35 +40,13 @@ repositories {
     }
 }
 
-// Dependencies to other SITMUN plugins must declared all here to facilitate using them
-// in different places of this script
-ext {
-    // Java plugins/libraries
-    sitmunlibs = [:]
 
-    // Node modules
-    sitmunmodules = [:]
-    sitmunmodules.sitmunfrontendcore = [
-            gitrepo : 'https://github.com/sitmun/sitmun-frontend-core.git',
-            groupId : 'org.sitmun',
-            artifactId : 'sitmun-frontend-core',
-            version : 'master'
-        ]
-    sitmunmodules.sitmunfrontendgui = [
-        gitrepo : 'https://github.com/sitmun/sitmun-frontend-gui.git',
-        groupId : 'org.sitmun',
-        artifactId : 'sitmun-frontend-gui',
-        version : 'master'
-    ]
-}
-
-dependencies {    
-    sitmunlibs.each { k,v -> compile "${v.groupId}:${v.artifactId}:${v.version}" }
+dependencies {        
     compile "io.springfox:springfox-data-rest:${springfox_swagger_version}"
     compile "io.springfox:springfox-swagger2:${springfox_swagger_version}"
     compile "io.springfox:springfox-swagger-ui:${springfox_swagger_version}"
         
-    compile ("org.sitmun:sitmun-backend-core:0.7.0+")
+    compile ("org.sitmun:sitmun-backend-core:0.7+")
 
     if (project.hasProperty('oracle')) {
         compile "com.zaxxer:HikariCP:${hikaricp_version}"
@@ -132,94 +110,7 @@ sonarqube {
     }  
 }
 
-   
-
-sourceSets {
-  main {
-    resources {
-      srcDirs = ["$projectDir/dist", "$projectDir/src/main/resources"]
-    }
-  }
-}
-
-def cloneDir = file("$buildDir/plugins-src")
-
-task clonePlugins {
-  description = 'Clone SITMUN plugins from GitHub".'
-  doLast {
-    if (!cloneDir.exists()) {
-      mkdir cloneDir
-    }
-    sitmunlibs.each { k, v ->
-      def targetDir = file("$cloneDir/${v.artifactId}")
-      if (!targetDir.exists()) {
-        grgit.clone {
-          dir = targetDir
-          uri = "${v.gitrepo}"
-          refToCheckout = "${v.version}"
-        }
-      }
-    }
-    sitmunmodules.each { k, v ->
-          def targetDir = file("$cloneDir/${v.artifactId}")
-          if (!targetDir.exists()) {
-            grgit.clone {
-              dir = targetDir
-              uri = "${v.gitrepo}"
-              refToCheckout = "${v.version}"
-            }
-          }
-        }
-  }
-}
-
-clonePlugins.mustRunAfter clean
-
-task installPlugins(dependsOn: clonePlugins) {
-  description = 'Install Plugins.'
-  doLast {
-    // It creates a temporary GradleBuild task for each sitmun dependency in sitmunlibs
-    // and runs the specified tasks for each
-    sitmunlibs.each { k,v ->
-      def targetDir = file("$cloneDir/${v.artifactId}/dist")
-      if (!targetDir.exists()) {
-        def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: GradleBuild)
-        tempTask.dir = file("$cloneDir/${v.artifactId}")
-        tempTask.startParameter.projectProperties["customVersion"] = v.version
-        tempTask.tasks = [ "install" ]
-        tempTask.execute()
-      }
-    }
-    sitmunmodules.each { k,v ->
-          def targetDir = file("$cloneDir/${v.artifactId}/dist")
-          if (!targetDir.exists()) {
-            def tempTask = tasks.create(name: "install_module_${v.artifactId}", type: GradleBuild)
-            tempTask.dir = file("$cloneDir/${v.artifactId}")
-            tempTask.startParameter.projectProperties["customVersion"] = v.version
-            tempTask.tasks = [ "install" ]
-            tempTask.execute()
-          }
-        }
-  }
-}
-
-installPlugins.mustRunAfter clonePlugins
-
-task installModules(dependsOn: [installPlugins, npmInstall]) {
-  doLast {
-    sitmunmodules.values().each {
-      def sourceDir = "$cloneDir/${it.artifactId}/dist" 
-      ant.copy(todir: "node_modules") {
-        fileset(dir: sourceDir)
-      } 
-    }
-  }
-}
-
-installModules.mustRunAfter installPlugins
-installModules.mustRunAfter npmInstall
-
-task buildApp(dependsOn: installModules) {
+task buildApp(dependsOn: npmInstall) {
   doLast {
     def build = tasks.create(name: "buildAppToo", type: NpmTask)
     build.args = ['run-script', 'build']
@@ -227,10 +118,6 @@ task buildApp(dependsOn: installModules) {
   }
 }
 
-buildApp.mustRunAfter installModules
-
-compileJava.dependsOn installPlugins 
-compileJava.mustRunAfter installPlugins 
 
 processResources.dependsOn buildApp
 processResources.mustRunAfter buildApp
