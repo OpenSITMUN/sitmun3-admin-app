@@ -77,6 +77,14 @@ bootRun {
     args = ["--spring.profiles.active=" + profiles]
 }
 
+sourceSets {
+  main {
+    resources {
+      srcDirs = ["$projectDir/dist", "$projectDir/src/main/resources"]
+    }
+  }
+}
+
 task checkJavaVersion {
     if (!JavaVersion.current().equals(targetJavaVersion)) {
         String message = """
